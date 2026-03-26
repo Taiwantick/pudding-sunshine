@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>布丁的陽光草原</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=Playfair+Display:ital,wght@1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream:    #FFFBF4;
+      --warm-bg:  #FFF5E6;
+      --yellow:   #F2C84B;
+      --yellow-light: #FDE89A;
+      --green:    #8BB89A;
+      --green-light: #C8DFCC;
+      --green-dark:  #5A8C6A;
+      --blush:    #EAA89C;
+      --blush-light: #F5D5CF;
+      --brown:    #4A3728;
+      --brown-mid:#7A5C48;
+      --brown-light: #B8967E;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--cream);
+      color: var(--brown);
+      font-family: 'Noto Sans TC', sans-serif;
+      font-weight: 300;
+      line-height: 1.8;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 60px;
+      background: rgba(255,251,244,0.88);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(139,184,154,0.2);
+    }
+    .nav-logo {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: var(--green-dark);
+      letter-spacing: 0.05em;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .nav-logo .paw { font-size: 1.3rem; }
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--brown-mid);
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      transition: color 0.3s;
+    }
+    .nav-links a:hover { color: var(--green-dark); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(160deg, var(--warm-bg) 0%, var(--cream) 50%, #EDF5EF 100%);
+      padding: 100px 60px 60px;
+    }
+
+    /* floating blobs */
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -80px; right: -80px;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(242,200,75,0.18) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -60px; left: -60px;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(139,184,154,0.2) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      max-width: 1100px;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-text {}
+    .hero-eyebrow {
+      font-size: 0.78rem;
+      letter-spacing: 0.22em;
+      color: var(--green-dark);
+      text-transform: uppercase;
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 28px;
+      height: 1px;
+      background: var(--green);
+    }
+    .hero-title {
+      font-family: 'Noto Serif TC', serif;
+      font-size: clamp(2.4rem, 4vw, 3.4rem);
+      font-weight: 500;
+      line-height: 1.3;
+      color: var(--brown);
+      margin-bottom: 24px;
+    }
+    .hero-title em {
+      font-style: italic;
+      color: var(--green-dark);
+      font-family: 'Playfair Display', serif;
+    }
+    .hero-sub {
+      font-size: 1rem;
+      color: var(--brown-mid);
+      line-height: 1.9;
+      margin-bottom: 40px;
+      max-width: 440px;
+    }
+    .btn-group {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .btn-primary {
+      background: var(--green-dark);
+      color: white;
+      padding: 14px 32px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-size: 0.88rem;
+      letter-spacing: 0.06em;
+      transition: all 0.3s;
+      border: none;
+      cursor: pointer;
+    }
+    .btn-primary:hover {
+      background: var(--brown);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(74,55,40,0.15);
+    }
+    .btn-ghost {
+      background: transparent;
+      color: var(--brown-mid);
+      padding: 14px 32px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-size: 0.88rem;
+      letter-spacing: 0.06em;
+      border: 1.5px solid var(--brown-light);
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+    .btn-ghost:hover {
+      border-color: var(--green);
+      color: var(--green-dark);
+    }
+
+    /* hero illustration / card */
+    .hero-visual {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .memorial-card {
+      background: white;
+      border-radius: 24px;
+      padding: 32px;
+      box-shadow: 0 20px 60px rgba(74,55,40,0.1);
+      max-width: 340px;
+      width: 100%;
+      position: relative;
+    }
+    .memorial-card::before {
+      content: '🌿';
+      position: absolute;
+      top: -12px; right: 20px;
+      font-size: 1.6rem;
+      transform: rotate(20deg);
+    }
+    .card-photo {
+      width: 100%;
+      height: 200px;
+      background: linear-gradient(135deg, var(--yellow-light), var(--green-light));
+      border-radius: 16px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .card-photo::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, transparent 60%, rgba(255,255,255,0.3));
+    }
+    .card-name {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 1.4rem;
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+    .card-years {
+      font-size: 0.8rem;
+      color: var(--brown-light);
+      letter-spacing: 0.1em;
+      margin-bottom: 14px;
+    }
+    .card-quote {
+      font-size: 0.88rem;
+      color: var(--brown-mid);
+      font-style: italic;
+      line-height: 1.7;
+      border-left: 3px solid var(--yellow);
+      padding-left: 14px;
+    }
+    .card-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 18px;
+    }
+    .card-action {
+      flex: 1;
+      background: var(--warm-bg);
+      border: none;
+      border-radius: 10px;
+      padding: 10px;
+      font-size: 0.8rem;
+      color: var(--brown-mid);
+      cursor: pointer;
+      transition: background 0.2s;
+      font-family: 'Noto Sans TC', sans-serif;
+    }
+    .card-action:hover { background: var(--green-light); }
+
+    /* ── SECTION SHARED ── */
+    section {
+      padding: 96px 60px;
+    }
+    .section-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      color: var(--green-dark);
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    .section-title {
+      font-family: 'Noto Serif TC', serif;
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      font-weight: 500;
+      line-height: 1.4;
+      max-width: 520px;
+    }
+    .section-sub {
+      color: var(--brown-mid);
+      margin-top: 16px;
+      max-width: 500px;
+      line-height: 1.9;
+    }
+
+    /* ── FEATURES ── */
+    .features { background: white; }
+    .features-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .features-header { margin-bottom: 56px; }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+    .feature-card {
+      background: var(--cream);
+      border-radius: 20px;
+      padding: 32px 28px;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .feature-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 40px rgba(74,55,40,0.08);
+    }
+    .feature-icon {
+      width: 52px; height: 52px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+    }
+    .icon-green { background: var(--green-light); }
+    .icon-yellow { background: var(--yellow-light); }
+    .icon-blush { background: var(--blush-light); }
+    .feature-title {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 1.1rem;
+      font-weight: 500;
+      margin-bottom: 10px;
+    }
+    .feature-desc {
+      font-size: 0.88rem;
+      color: var(--brown-mid);
+      line-height: 1.8;
+    }
+
+    /* ── POEM SAMPLE ── */
+    .poem-section {
+      background: linear-gradient(135deg, #EDF5EF 0%, var(--cream) 100%);
+    }
+    .poem-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .poem-card {
+      background: white;
+      border-radius: 24px;
+      padding: 48px 44px;
+      box-shadow: 0 12px 40px rgba(74,55,40,0.07);
+    }
+    .poem-tag {
+      display: inline-block;
+      background: var(--yellow-light);
+      color: var(--brown);
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      padding: 5px 14px;
+      border-radius: 30px;
+      margin-bottom: 24px;
+    }
+    .poem-title {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 1.5rem;
+      font-weight: 500;
+      margin-bottom: 24px;
+      color: var(--brown);
+    }
+    .poem-body {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 0.95rem;
+      line-height: 2.2;
+      color: var(--brown-mid);
+      font-weight: 300;
+    }
+    .poem-body p { margin-bottom: 16px; }
+    .poem-footer {
+      margin-top: 28px;
+      padding-top: 20px;
+      border-top: 1px solid var(--green-light);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .poem-author {
+      font-size: 0.8rem;
+      color: var(--brown-light);
+      letter-spacing: 0.06em;
+    }
+    .poem-actions {
+      display: flex;
+      gap: 14px;
+    }
+    .poem-action-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--brown-light);
+      font-size: 1.1rem;
+      transition: color 0.2s;
+    }
+    .poem-action-btn:hover { color: var(--green-dark); }
+
+    /* ── MEMORIAL WALL ── */
+    .memorial-section { background: white; }
+    .memorial-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .memorial-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 48px;
+    }
+    .memorial-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+    .memorial-item {
+      border-radius: 18px;
+      overflow: hidden;
+      aspect-ratio: 1;
+      position: relative;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .memorial-item:hover { transform: scale(1.03); }
+    .memorial-item:hover .memorial-overlay { opacity: 1; }
+    .memorial-bg {
+      width: 100%; height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+    }
+    .m1 { background: linear-gradient(135deg, var(--yellow-light), #FDE0A0); }
+    .m2 { background: linear-gradient(135deg, var(--green-light), #B0D8B8); }
+    .m3 { background: linear-gradient(135deg, var(--blush-light), #F0C8C4); }
+    .m4 { background: linear-gradient(135deg, #D4E8F8, #C8D8F0); }
+    .memorial-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(74,55,40,0.55);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s;
+      color: white;
+      padding: 16px;
+      text-align: center;
+    }
+    .memorial-overlay-name {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 1.1rem;
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+    .memorial-overlay-years {
+      font-size: 0.75rem;
+      opacity: 0.8;
+      letter-spacing: 0.1em;
+    }
+    .memorial-upload {
+      background: var(--cream);
+      border: 2.5px dashed var(--green-light);
+      border-radius: 18px;
+      aspect-ratio: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: border-color 0.3s, background 0.3s;
+      color: var(--brown-light);
+      gap: 8px;
+    }
+    .memorial-upload:hover {
+      border-color: var(--green);
+      background: var(--green-light);
+    }
+    .memorial-upload .upload-icon { font-size: 2rem; }
+    .memorial-upload .upload-text { font-size: 0.8rem; text-align: center; line-height: 1.6; }
+
+    /* ── CTA ── */
+    .cta-section {
+      background: var(--green-dark);
+      text-align: center;
+      padding: 96px 60px;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-section::before {
+      content: '🌾';
+      position: absolute;
+      left: 8%; top: 30%;
+      font-size: 4rem;
+      opacity: 0.15;
+      transform: rotate(-15deg);
+    }
+    .cta-section::after {
+      content: '🌼';
+      position: absolute;
+      right: 8%; top: 25%;
+      font-size: 4rem;
+      opacity: 0.15;
+      transform: rotate(10deg);
+    }
+    .cta-inner {
+      max-width: 620px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+    .cta-title {
+      font-family: 'Noto Serif TC', serif;
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      color: white;
+      font-weight: 500;
+      line-height: 1.4;
+      margin-bottom: 16px;
+    }
+    .cta-sub {
+      color: rgba(255,255,255,0.75);
+      margin-bottom: 40px;
+      line-height: 1.9;
+    }
+    .btn-white {
+      background: white;
+      color: var(--green-dark);
+      padding: 16px 40px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-size: 0.9rem;
+      letter-spacing: 0.06em;
+      font-weight: 500;
+      transition: all 0.3s;
+      display: inline-block;
+    }
+    .btn-white:hover {
+      background: var(--yellow-light);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--brown);
+      color: rgba(255,255,255,0.6);
+      padding: 48px 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .footer-logo {
+      font-family: 'Noto Serif TC', serif;
+      color: white;
+      font-size: 1rem;
+    }
+    .footer-copy {
+      font-size: 0.78rem;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 16px 24px; }
+      section { padding: 64px 24px; }
+      .hero { padding: 100px 24px 48px; }
+      .hero-inner { grid-template-columns: 1fr; gap: 40px; }
+      .hero-visual { display: none; }
+      .features-grid { grid-template-columns: 1fr; }
+      .poem-inner { grid-template-columns: 1fr; }
+      .memorial-grid { grid-template-columns: repeat(2, 1fr); }
+      footer { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">
+      <span class="paw">🐾</span>
+      布丁的陽光草原
+    </div>
+    <ul class="nav-links">
+      <li><a href="#features">關於我們</a></li>
+      <li><a href="#poem">詩集．歌詞</a></li>
+      <li><a href="#memorial">紀念牆</a></li>
+      <li><a href="#">療癒資源</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-text">
+        <p class="hero-eyebrow">陪伴 · 思念 · 療癒</p>
+        <h1 class="hero-title">
+          每一個離去的毛孩<br>
+          都奔向了<em>陽光草原</em>
+        </h1>
+        <p class="hero-sub">
+          這裡是布丁為所有毛孩守護的地方。<br>
+          用詩、用歌、用一張照片，讓愛繼續說話。
+        </p>
+        <div class="btn-group">
+          <a href="#memorial" class="btn-primary">為我的毛孩留下紀念 🌿</a>
+          <a href="#poem" class="btn-ghost">聆聽詩與歌</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="memorial-card">
+          <div class="card-photo">🐕</div>
+          <div class="card-name">布丁</div>
+          <div class="card-years">2007 — 永遠</div>
+          <p class="card-quote">「你奔跑的樣子，像一塊金色的陽光。」</p>
+          <div class="card-actions">
+            <button class="card-action">🕯️ 點燭光</button>
+            <button class="card-action">🌸 送一朵花</button>
+            <button class="card-action">💬 留言</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="features" id="features">
+    <div class="features-inner">
+      <div class="features-header">
+        <p class="section-label">我們提供什麼</p>
+        <h2 class="section-title">悲傷不需要獨自承受</h2>
+        <p class="section-sub">從文字到音樂，從社群到專業支持，布丁的陽光草原陪你走過每一個思念的時刻。</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon icon-yellow">📖</div>
+          <div class="feature-title">詩集 · 歌詞</div>
+          <p class="feature-desc">創作者親筆寫下的詩與歌詞，為每一種情緒找到語言——告別、思念、感謝、釋懷。</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon icon-green">🎵</div>
+          <div class="feature-title">陽光草原音樂</div>
+          <p class="feature-desc">由 AI 音樂工具輔助創作，每一首歌都承載著真實的故事，在你最需要的時候輕聲陪伴。</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon icon-blush">🌸</div>
+          <div class="feature-title">毛孩紀念牆</div>
+          <p class="feature-desc">上傳你的毛孩照片，寫下名字與故事，讓全世界知道他/她曾被深深愛過。</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon icon-green">🤝</div>
+          <div class="feature-title">療癒專業資源</div>
+          <p class="feature-desc">連結芳療師、悲傷輔導諮商師等專業人士，讓有需要的毛孩家長找到溫柔的支持。</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon icon-blush">💌</div>
+          <div class="feature-title">給毛孩的信</div>
+          <p class="feature-desc">寫一封無法寄出的信，說出來不及說完的話。我們替你好好保存，在陽光草原等著他們讀。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- POEM SECTION -->
+  <section class="poem-section" id="poem">
+    <div class="poem-inner">
+      <div class="poem-card">
+        <span class="poem-tag">詩集 · 告別篇</span>
+        <h3 class="poem-title">你去的地方，草很軟</h3>
+        <div class="poem-body">
+          <p>你去的地方，草很軟<br>
+          陽光不燙，風很慢<br>
+          沒有需要忍住的疼痛<br>
+          也沒有需要等待的時間</p>
+          <p>我把你最愛的零食<br>
+          折成一縷光，送過去<br>
+          願你在那裡<br>
+          還是那副貪吃的樣子</p>
+        </div>
+        <div class="poem-footer">
+          <span class="poem-author">— 布丁的陽光草原</span>
+          <div class="poem-actions">
+            <button class="poem-action-btn" title="收藏">🤍</button>
+            <button class="poem-action-btn" title="播放">🎵</button>
+            <button class="poem-action-btn" title="分享">↗</button>
+          </div>
+        </div>
+      </div>
+      <div>
+        <p class="section-label">詩集 · 歌詞</p>
+        <h2 class="section-title">文字是另一種抱抱的方式</h2>
+        <p class="section-sub">
+          每一首詩，都從真實的眼淚中長出來。<br>
+          按照情緒分類，讓你在最需要的時候，找到最懂你的那一首。
+        </p>
+        <div style="margin-top: 36px; display: flex; flex-direction: column; gap: 14px;">
+          <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+            <span style="background: var(--yellow-light); padding: 8px 18px; border-radius: 30px; font-size: 0.82rem; color: var(--brown);">告別</span>
+            <span style="background: var(--green-light); padding: 8px 18px; border-radius: 30px; font-size: 0.82rem; color: var(--brown);">思念</span>
+            <span style="background: var(--blush-light); padding: 8px 18px; border-radius: 30px; font-size: 0.82rem; color: var(--brown);">感謝</span>
+            <span style="background: #D4E8F8; padding: 8px 18px; border-radius: 30px; font-size: 0.82rem; color: var(--brown);">釋懷</span>
+            <span style="background: var(--cream); border: 1.5px solid var(--brown-light); padding: 8px 18px; border-radius: 30px; font-size: 0.82rem; color: var(--brown-mid);">陪伴</span>
+          </div>
+          <p style="font-size: 0.85rem; color: var(--brown-light); margin-top: 8px;">已收錄 28 首詩 · 14 首歌詞 · 8 首歌曲</p>
+        </div>
+        <a href="#" class="btn-primary" style="display: inline-block; margin-top: 36px;">探索全部詩詞 →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- MEMORIAL WALL -->
+  <section class="memorial-section" id="memorial">
+    <div class="memorial-inner">
+      <div class="memorial-header">
+        <div>
+          <p class="section-label">紀念牆</p>
+          <h2 class="section-title">每一個名字，都是一個宇宙</h2>
+        </div>
+        <a href="#" class="btn-ghost">查看全部 →</a>
+      </div>
+      <div class="memorial-grid">
+        <div class="memorial-item">
+          <div class="memorial-bg m1">🐩</div>
+          <div class="memorial-overlay">
+            <div class="memorial-overlay-name">小白</div>
+            <div class="memorial-overlay-years">2010 – 2023</div>
+          </div>
+        </div>
+        <div class="memorial-item">
+          <div class="memorial-bg m2">🐈</div>
+          <div class="memorial-overlay">
+            <div class="memorial-overlay-name">橘子</div>
+            <div class="memorial-overlay-years">2015 – 2024</div>
+          </div>
+        </div>
+        <div class="memorial-item">
+          <div class="memorial-bg m3">🐕</div>
+          <div class="memorial-overlay">
+            <div class="memorial-overlay-name">米粒</div>
+            <div class="memorial-overlay-years">2012 – 2025</div>
+          </div>
+        </div>
+        <div class="memorial-item">
+          <div class="memorial-bg m4">🐇</div>
+          <div class="memorial-overlay">
+            <div class="memorial-overlay-name">雪球</div>
+            <div class="memorial-overlay-years">2018 – 2024</div>
+          </div>
+        </div>
+        <div class="memorial-upload">
+          <span class="upload-icon">🌿</span>
+          <span class="upload-text">為你的毛孩<br>建立紀念頁面</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="cta-inner">
+      <h2 class="cta-title">你不需要假裝沒事<br>這裡的人都懂你</h2>
+      <p class="cta-sub">加入布丁的陽光草原，讓思念有個溫柔的落腳地。</p>
+      <a href="#" class="btn-white">現在就加入 🌾</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">🐾 布丁的陽光草原</div>
+    <div class="footer-copy">© 2026 布丁的陽光草原 · 用愛守護每一個離去的毛孩</div>
+  </footer>
+
+</body>
+</html>
