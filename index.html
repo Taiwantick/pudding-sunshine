@@ -813,12 +813,24 @@
           src="https://bandcamp.com/EmbeddedPlayer/album=2109722090/size=small/bgcol=4A3728/linkcol=FDE89A/tracklist=false/artwork=none/transparent=true/"
           seamless></iframe>
       </div>
-      <!-- mobile: direct link -->
-      <a class="concert-player concert-player--mobile"
-         href="https://monbaza.bandcamp.com/album/pudding-sunshine"
-         target="_blank">
+      <!-- mobile: open modal player -->
+      <button class="concert-player concert-player--mobile" onclick="openPlayer()">
         ▶ 點擊播放
-      </a>
+      </button>
+    </div>
+  </div>
+
+  <!-- MOBILE PLAYER MODAL -->
+  <div id="player-modal" style="display:none; position:fixed; inset:0; z-index:200; background:rgba(30,20,12,0.82); backdrop-filter:blur(6px); align-items:flex-end; justify-content:center;">
+    <div style="background:var(--brown); width:100%; max-width:600px; border-radius:24px 24px 0 0; padding:20px 20px 32px; position:relative;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+        <div>
+          <div style="font-family:'Noto Serif TC',serif; color:var(--yellow-light); font-size:1rem; font-weight:500;">🎵 草原上的音樂會</div>
+          <div style="color:rgba(253,232,154,0.5); font-size:0.72rem; margin-top:2px;">Pudding Sunshine · 安安篇</div>
+        </div>
+        <button onclick="closePlayer()" style="background:none; border:none; color:var(--yellow-light); font-size:1.4rem; cursor:pointer; padding:4px 8px;">✕</button>
+      </div>
+      <iframe id="player-iframe" style="border:0; width:100%; height:400px; border-radius:12px;" src="" seamless></iframe>
     </div>
   </div>
 
@@ -1074,6 +1086,29 @@
   </footer>
 
   <script>
+    const BANDCAMP_SRC = 'https://bandcamp.com/EmbeddedPlayer/album=2109722090/size=large/bgcol=4A3728/linkcol=FDE89A/tracklist=true/transparent=true/';
+
+    function openPlayer() {
+      const modal = document.getElementById('player-modal');
+      const iframe = document.getElementById('player-iframe');
+      iframe.src = BANDCAMP_SRC;
+      modal.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closePlayer() {
+      const modal = document.getElementById('player-modal');
+      const iframe = document.getElementById('player-iframe');
+      modal.style.display = 'none';
+      iframe.src = ''; // stop playback
+      document.body.style.overflow = '';
+    }
+
+    // close on backdrop tap
+    document.getElementById('player-modal').addEventListener('click', function(e) {
+      if (e.target === this) closePlayer();
+    });
+
     // Measure actual nav + concert bar heights and set correct offsets
     function setHeaderOffset() {
       const nav = document.querySelector('nav');
