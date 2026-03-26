@@ -30,7 +30,7 @@
       color: var(--brown);
       font-family: 'Noto Sans TC', sans-serif;
       font-weight: 300;
-      padding-top: 61px; /* offset for fixed nav */
+      padding-top: 115px; /* offset for fixed nav + concert bar, refined by JS */
       line-height: 1.8;
     }
 
@@ -715,6 +715,8 @@
 
     /* ── 草原上的音樂會 BAR ── */
     .concert-bar {
+      position: fixed;
+      left: 0; right: 0; z-index: 95;
       background: var(--brown);
       border-bottom: 1px solid rgba(253,232,154,0.15);
     }
@@ -747,7 +749,6 @@
     .concert-player--desktop { display: block; }
 
     @media (max-width: 768px) {
-      body { padding-top: 53px; }
       .concert-bar-inner { padding: 0 16px; gap: 12px; height: 48px; }
       .concert-sub { display: none; }
       .concert-title { font-size: 0.82rem; }
@@ -798,8 +799,8 @@
     </ul>
   </nav>
 
-  <!-- 草原上的音樂會 -->
-  <div class="concert-bar">
+  <!-- 草原上的音樂會 — fixed below nav -->
+  <div class="concert-bar" id="concert-bar">
     <div class="concert-bar-inner">
       <div class="concert-bar-label">
         <span class="concert-icon">🎵</span>
@@ -1071,6 +1072,20 @@
     <div class="footer-logo">🐾 布丁的陽光草原</div>
     <div class="footer-copy">© 2026 布丁的陽光草原 · 用愛守護每一個離去的毛孩</div>
   </footer>
+
+  <script>
+    // Measure actual nav + concert bar heights and set correct offsets
+    function setHeaderOffset() {
+      const nav = document.querySelector('nav');
+      const bar = document.getElementById('concert-bar');
+      if (!nav || !bar) return;
+      const navH = nav.getBoundingClientRect().height;
+      bar.style.top = navH + 'px';
+      document.body.style.paddingTop = (navH + bar.getBoundingClientRect().height) + 'px';
+    }
+    setHeaderOffset();
+    window.addEventListener('resize', setHeaderOffset);
+  </script>
 
 </body>
 </html>
