@@ -30,6 +30,7 @@
       color: var(--brown);
       font-family: 'Noto Sans TC', sans-serif;
       font-weight: 300;
+      padding-top: 61px; /* offset for fixed nav */
       line-height: 1.8;
     }
 
@@ -716,7 +717,6 @@
     .concert-bar {
       background: var(--brown);
       border-bottom: 1px solid rgba(253,232,154,0.15);
-      margin-top: 61px; /* push below fixed nav */
     }
     .concert-bar-inner {
       max-width: 1200px; margin: 0 auto;
@@ -745,7 +745,7 @@
     .concert-player { min-width: 0; }
 
     @media (max-width: 768px) {
-      .concert-bar { margin-top: 53px; }
+      body { padding-top: 53px; }
       .concert-bar-inner {
         padding: 0 16px; gap: 12px; height: 48px;
       }
