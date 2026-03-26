@@ -141,6 +141,23 @@
     }
     .btn-ghost:hover { background: var(--green-dark); color: white; }
 
+    .bandcamp-embed {
+      margin: 0 0 60px;
+      border-radius: 20px; overflow: hidden;
+      box-shadow: 0 8px 32px rgba(74,55,40,0.08);
+    }
+    .track-links {
+      display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px;
+    }
+    .track-link {
+      font-size: 0.75rem; padding: 4px 12px;
+      background: var(--green-light); color: var(--brown);
+      border-radius: 20px; text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+      white-space: nowrap;
+    }
+    .track-link:hover { background: var(--green-dark); color: white; }
+
     footer {
       background: var(--brown); color: rgba(255,251,244,0.7);
       text-align: center; padding: 40px 60px; font-size: 0.82rem; margin-top: 120px;
@@ -185,10 +202,20 @@
       </div>
       <div class="album-text">
         <h2>關於這張輯</h2>
-        <p>這是為一隻名叫安安的狗所寫的四首歌。他在家人的陪伴下離開，帶著一生的快樂縱身躍進光裡。</p>
-        <p style="margin-top:12px;">歌詞是英文，詩是中文，但說的是同一件事：愛是留不住的，但愛存在過，這一點永遠是真的。</p>
-        <a href="../poems/an-an.html" class="poem-link">閱讀中文詩〈安安〉 →</a>
+        <p>這是為一隻名叫安安的狗所寫的音樂輯。他在家人的陪伴下離開，帶著一生的快樂縱身躍進光裡。</p>
+        <p style="margin-top:12px;">13 首曲子，四個主題，有聲音、有空氣、有光。歌詞是英文，詩是中文，說的是同一件事。</p>
+        <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:20px;">
+          <a href="https://monbaza.bandcamp.com/album/pudding-sunshine" target="_blank" class="poem-link">在 Bandcamp 聆聽完整專輯 ↗</a>
+          <a href="../poems/an-an.html" class="poem-link" style="color:var(--brown-mid);">閱讀中文詩〈安安〉 →</a>
+        </div>
       </div>
+    </div>
+
+    <!-- BANDCAMP EMBED -->
+    <div class="bandcamp-embed">
+      <iframe style="border:0; width:100%; height:470px;"
+        src="https://bandcamp.com/EmbeddedPlayer/album=2109722090/size=large/bgcol=FFFBF4/linkcol=5A8C6A/tracklist=true/transparent=true/"
+        seamless></iframe>
     </div>
 
     <!-- SONGS -->
@@ -209,6 +236,12 @@
         </div>
         <div class="song-actions">
           <span class="tag-mood gather">陪伴 · 告別</span>
+          <div class="track-links">
+            <a class="track-link" href="https://monbaza.bandcamp.com/track/the-good-boy-hears-everything-love-01" target="_blank">Love 01 · 02:53</a>
+            <a class="track-link" href="https://monbaza.bandcamp.com/track/the-good-boy-hears-everything-love-02" target="_blank">Love 02 · 03:03</a>
+            <a class="track-link" href="https://monbaza.bandcamp.com/track/the-good-boy-hears-everything-love-03" target="_blank">Love 03 · 03:09</a>
+            <a class="track-link" href="https://monbaza.bandcamp.com/track/the-good-boy-hears-everything-love-04" target="_blank">Love 04 · 04:55</a>
+          </div>
         </div>
       </div>
 
@@ -226,6 +259,11 @@
         </div>
         <div class="song-actions">
           <span class="tag-mood release">釋懷 · 自由</span>
+          <div class="track-links">
+            <a class="track-link" href="https://monbaza.bandcamp.com/track/he-found-no-floor-beneath-his-paws-love-01" target="_blank">Love 01 · 02:39</a>
+            <a class="track-link" href="https://monbaza.bandcamp.com/track/he-found-no-floor-beneath-his-paws-love-02" target="_blank">Love 02 · 02:59</a>
+            <a class="track-link" href="https://monbaza.bandcamp.com/track/he-found-no-floor-beneath-his-paws-love-03" target="_blank">Love 03 · 03:46</a>
+          </div>
         </div>
       </div>
 
@@ -243,6 +281,10 @@
         </div>
         <div class="song-actions">
           <span class="tag-mood memory">回憶 · 快樂</span>
+          <div class="track-links">
+            <a class="track-link" href="https://monbaza.bandcamp.com/track/the-park-that-never-closed-love-01" target="_blank">Love 01 · 03:05</a>
+            <a class="track-link" href="https://monbaza.bandcamp.com/track/the-park-that-never-closed-love-02" target="_blank">Love 02 · 02:41</a>
+          </div>
         </div>
       </div>
 
@@ -260,6 +302,39 @@
         </div>
         <div class="song-actions">
           <span class="tag-mood light">光 · 永恆</span>
+          <div class="track-links">
+            <a class="track-link" href="https://monbaza.bandcamp.com/track/he-jumped-into-the-brightest-thing-love-01" target="_blank">Love 01 · 03:29</a>
+            <a class="track-link" href="https://monbaza.bandcamp.com/track/he-jumped-into-the-brightest-thing-love-02" target="_blank">Love 02 · 03:14</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- BONUS TRACKS -->
+      <div class="song-card" id="song5">
+        <div class="song-number" style="font-size:0.7rem; padding-top:4px;">加曲</div>
+        <div class="song-body">
+          <div class="song-title-en">He was small and the world was enormous</div>
+          <div class="song-title-zh">他很小，世界很大</div>
+        </div>
+        <div class="song-actions">
+          <span class="tag-mood gather">溫柔 · 回望</span>
+          <div class="track-links">
+            <a class="track-link" href="https://monbaza.bandcamp.com/track/he-was-small-and-the-world-was-enormous" target="_blank">聆聽 · 02:22</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="song-card" id="song6">
+        <div class="song-number" style="font-size:0.7rem; padding-top:4px;">加曲</div>
+        <div class="song-body">
+          <div class="song-title-en">The light was not a stranger when it came</div>
+          <div class="song-title-zh">光來的時候，他認得它</div>
+        </div>
+        <div class="song-actions">
+          <span class="tag-mood light">光 · 平靜</span>
+          <div class="track-links">
+            <a class="track-link" href="https://monbaza.bandcamp.com/track/the-light-was-not-a-stranger-when-it-came" target="_blank">聆聽 · 03:07</a>
+          </div>
         </div>
       </div>
 
