@@ -205,6 +205,23 @@
       width: 100%;
       position: relative;
     }
+    .memorial-card--link {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .memorial-card--link:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 28px 72px rgba(74,55,40,0.15);
+    }
+    .card-eyebrow {
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      color: var(--green);
+      font-weight: 600;
+      margin-bottom: 14px;
+    }
     .memorial-card::before {
       content: '🌿';
       position: absolute;
@@ -741,17 +758,18 @@
         </div>
       </div>
       <div class="hero-visual">
-        <div class="memorial-card">
-          <div class="card-photo">🐕</div>
-          <div class="card-name">布丁</div>
-          <div class="card-years">2007 — 永遠</div>
-          <p class="card-quote">「你奔跑的樣子，像一塊金色的陽光。」</p>
+        <a href="poems/an-an.html" class="memorial-card memorial-card--link">
+          <div class="card-eyebrow">🌿 安安的草原 · 第一輯</div>
+          <div class="card-photo">🐶</div>
+          <div class="card-name">安安</div>
+          <div class="card-years">好狗 · 永遠的好男孩</div>
+          <p class="card-quote">「你聽得見每一個心跳，<br>每一聲呼喚，每一個夢。」</p>
           <div class="card-actions">
-            <button class="card-action">🕯️ 點燭光</button>
-            <button class="card-action">🌸 送一朵花</button>
-            <button class="card-action">💬 留言</button>
+            <span class="card-action">📖 詩集</span>
+            <span class="card-action">🎵 歌曲</span>
+            <span class="card-action">💚 安安的草原</span>
           </div>
-        </div>
+        </a>
       </div>
     </div>
   </section>
