@@ -717,6 +717,8 @@
       position: fixed; top: 61px; left: 0; right: 0; z-index: 90;
       background: var(--brown);
       border-bottom: 1px solid rgba(253,232,154,0.15);
+      -webkit-transform: translateZ(0); /* Safari fixed position fix */
+      transform: translateZ(0);
     }
     .concert-bar-inner {
       max-width: 1200px; margin: 0 auto;
@@ -746,11 +748,20 @@
     /* push hero down to account for nav + concert bar */
     .hero { padding-top: 180px; }
 
+    @media (max-width: 768px) {
+      .concert-bar { top: 53px; }
+      .concert-bar-inner {
+        padding: 0 16px; gap: 12px; height: 48px;
+      }
+      .concert-sub { display: none; }
+      .concert-title { font-size: 0.8rem; }
+    }
+
     /* ── RESPONSIVE ── */
     @media (max-width: 768px) {
       nav { padding: 16px 24px; }
       section { padding: 64px 24px; }
-      .hero { padding: 100px 24px 48px; }
+      .hero { padding: 160px 24px 48px; }
       .hero-inner { grid-template-columns: 1fr; gap: 40px; }
       .hero-visual { display: none; }
       .features-grid { grid-template-columns: 1fr; }
