@@ -743,14 +743,23 @@
       letter-spacing: 0.05em;
     }
     .concert-player { min-width: 0; }
+    .concert-player--mobile { display: none; }
+    .concert-player--desktop { display: block; }
 
     @media (max-width: 768px) {
       body { padding-top: 53px; }
-      .concert-bar-inner {
-        padding: 0 16px; gap: 12px; height: 48px;
-      }
+      .concert-bar-inner { padding: 0 16px; gap: 12px; height: 48px; }
       .concert-sub { display: none; }
       .concert-title { font-size: 0.82rem; }
+      .concert-player--desktop { display: none; }
+      .concert-player--mobile {
+        display: flex; align-items: center;
+        background: var(--yellow-light); color: var(--brown);
+        padding: 6px 16px; border-radius: 20px;
+        font-size: 0.8rem; font-weight: 500;
+        text-decoration: none; white-space: nowrap;
+        letter-spacing: 0.04em;
+      }
     }
 
     /* ── RESPONSIVE ── */
@@ -797,11 +806,18 @@
         <span class="concert-title">草原上的音樂會</span>
         <span class="concert-sub">Pudding Sunshine · 安安篇 · 現正播放</span>
       </div>
-      <div class="concert-player">
+      <!-- desktop: iframe player -->
+      <div class="concert-player concert-player--desktop">
         <iframe style="border:0; width:100%; height:42px;"
           src="https://bandcamp.com/EmbeddedPlayer/album=2109722090/size=small/bgcol=4A3728/linkcol=FDE89A/tracklist=false/artwork=none/transparent=true/"
           seamless></iframe>
       </div>
+      <!-- mobile: direct link -->
+      <a class="concert-player concert-player--mobile"
+         href="https://monbaza.bandcamp.com/album/pudding-sunshine"
+         target="_blank">
+        ▶ 點擊播放
+      </a>
     </div>
   </div>
 
