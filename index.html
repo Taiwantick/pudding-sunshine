@@ -712,6 +712,40 @@
       letter-spacing: 0.06em; margin-bottom: 10px;
     }
 
+    /* ── 草原上的音樂會 BAR ── */
+    .concert-bar {
+      position: fixed; top: 61px; left: 0; right: 0; z-index: 90;
+      background: var(--brown);
+      border-bottom: 1px solid rgba(253,232,154,0.15);
+    }
+    .concert-bar-inner {
+      max-width: 1200px; margin: 0 auto;
+      padding: 0 60px;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      align-items: center;
+      gap: 24px;
+      height: 52px;
+    }
+    .concert-bar-label {
+      display: flex; align-items: center; gap: 10px;
+      white-space: nowrap;
+    }
+    .concert-icon { font-size: 1rem; }
+    .concert-title {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 0.88rem; font-weight: 500;
+      color: var(--yellow-light);
+      letter-spacing: 0.04em;
+    }
+    .concert-sub {
+      font-size: 0.72rem; color: rgba(253,232,154,0.5);
+      letter-spacing: 0.05em;
+    }
+    .concert-player { min-width: 0; }
+    /* push hero down to account for nav + concert bar */
+    .hero { padding-top: 180px; }
+
     /* ── RESPONSIVE ── */
     @media (max-width: 768px) {
       nav { padding: 16px 24px; }
@@ -747,6 +781,22 @@
       <li><a href="#">療癒資源</a></li>
     </ul>
   </nav>
+
+  <!-- 草原上的音樂會 -->
+  <div class="concert-bar">
+    <div class="concert-bar-inner">
+      <div class="concert-bar-label">
+        <span class="concert-icon">🎵</span>
+        <span class="concert-title">草原上的音樂會</span>
+        <span class="concert-sub">Pudding Sunshine · 安安篇 · 現正播放</span>
+      </div>
+      <div class="concert-player">
+        <iframe style="border:0; width:100%; height:42px;"
+          src="https://bandcamp.com/EmbeddedPlayer/album=2109722090/size=small/bgcol=4A3728/linkcol=FDE89A/tracklist=false/artwork=none/transparent=true/"
+          seamless></iframe>
+      </div>
+    </div>
+  </div>
 
   <!-- HERO -->
   <section class="hero">
