@@ -702,6 +702,15 @@
       font-size: 0.8rem; color: var(--green-dark); margin-top: auto;
       display: flex; align-items: center; gap: 4px;
     }
+    .anan-player {
+      margin-top: 28px;
+      padding-top: 24px;
+      border-top: 1px solid var(--green-light);
+    }
+    .anan-player-label {
+      font-size: 0.78rem; color: var(--brown-light);
+      letter-spacing: 0.06em; margin-bottom: 10px;
+    }
 
     /* ── RESPONSIVE ── */
     @media (max-width: 768px) {
@@ -913,6 +922,15 @@
               <span class="anan-door-arrow">進入 →</span>
             </a>
           </div>
+
+          <!-- BANDCAMP PLAYER -->
+          <div class="anan-player">
+            <p class="anan-player-label">🎵 線上試聽 — Pudding Sunshine</p>
+            <iframe style="border:0; width:100%; height:120px;"
+              src="https://bandcamp.com/EmbeddedPlayer/album=2109722090/size=small/bgcol=FFFBF4/linkcol=5A8C6A/tracklist=false/artwork=small/transparent=true/"
+              seamless></iframe>
+          </div>
+
         </div>
       </div>
 
