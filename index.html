@@ -73,11 +73,23 @@
       white-space: nowrap;
     }
     .nav-links a:hover { color: var(--green-dark); }
+    .link-icon { display: none; }
+    .nav-logo-text { white-space: nowrap; }
 
     @media (max-width: 768px) {
-      nav { padding: 12px 16px; }
-      .nav-links { gap: 16px; }
-      .nav-links a { font-size: 0.75rem; letter-spacing: 0.04em; }
+      nav { padding: 10px 16px; }
+      .nav-logo-text { display: none; }
+      .nav-links { gap: 4px; }
+      .nav-links a {
+        font-size: 1.3rem;
+        letter-spacing: 0;
+        padding: 6px 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .link-text { display: none; }
+      .link-icon { display: inline; }
     }
 
     /* ── HERO ── */
@@ -797,14 +809,14 @@
   <nav>
     <div class="nav-logo">
       <span class="paw">🐾</span>
-      布丁的陽光草原
+      <span class="nav-logo-text">布丁的陽光草原</span>
     </div>
     <ul class="nav-links">
-      <li><a href="#features">關於我們</a></li>
-      <li><a href="#anan">安安的草原</a></li>
-      <li><a href="#poem">詩集．歌詞</a></li>
-      <li><a href="#memorial">紀念牆</a></li>
-      <li><a href="#">療癒資源</a></li>
+      <li><a href="#features"><span class="link-icon">ℹ️</span><span class="link-text">關於我們</span></a></li>
+      <li><a href="#anan"><span class="link-icon">🐕</span><span class="link-text">安安的草原</span></a></li>
+      <li><a href="#poem"><span class="link-icon">📖</span><span class="link-text">詩集．歌詞</span></a></li>
+      <li><a href="#memorial"><span class="link-icon">🌸</span><span class="link-text">紀念牆</span></a></li>
+      <li><a href="#"><span class="link-icon">🌿</span><span class="link-text">療癒資源</span></a></li>
     </ul>
   </nav>
 
